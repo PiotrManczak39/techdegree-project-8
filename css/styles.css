@@ -1,3 +1,64 @@
-body {
-  background-color: yellow;
+* {
+  box-sizing: border-box;
 }
+
+body {
+  background-color: #fffbfb;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.wrapper {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.1em;
+}
+
+.profiles:hover {
+  transform: scale(1.18);
+}
+
+.row1, .row2, .row3, .row4 {
+  padding-bottom: 1.1em;
+}
+
+.profiles {
+  border: solid 1px lightgray;
+  border-radius: 10px;
+  background-color: white;
+  transition: .55s .3s ease-out;
+}
+
+.card {
+  display: flex;
+  margin: 1em;
+  align-items: center;
+}
+
+.inside {
+  line-height: 6px;
+}
+
+/* .inside:nth-child(1) {
+  font-weight: bolder;
+  font-size: 50px;
+} */
+
+h3 {
+  padding: 20px 0;
+}
+
+img {
+  border-radius: 50%;
+  width: 25%;
+  margin-right: .5em;
+}
+
+/*------------------
+  Modal Window
+-------------------*/
