@@ -1,16 +1,19 @@
 const mainContent = document.getElementById('main-content');
 const employeeArrays = [];
 let index = 0;
+const firstCard = document.querySelector('.card');
 
 fetch('https://randomuser.me/api/?results=12')
     .then(response => response.json())
     .then(data => {
       generateEmployees(data.results);
-      // console.log(data.results);
+      console.log(data.results);
     })
+    .catch(error => console.log('Looks like there was a problem.', error))
 
 
 function generateEmployees(data) {
+  data.forEach( item => employeeArrays.push(item) );
   data.map(result => {
     const html = `
       <section class = 'card' index = ${index}>
@@ -22,9 +25,40 @@ function generateEmployees(data) {
       </section>
     `
     index += 1;
-    employeeArrays.push(result);
+    // employeeArrays.push(result);
     mainContent.innerHTML += html;
   });
 }
 
-console.log(employeeArrays[1]);
+function generateModal(number) {
+  let modal = document.getElementById('modal')
+  let employee = employeeArrays[number];
+  let html = `
+    <div class="modal-inside">
+      <img src="${employee.picture.large}" />
+      <h3>${employee.name.first} ${employee.name.last}</h3>
+      <p>${employee.email}</p>
+      <p>${employee.location.city}</p>
+      <p>${employee.phone}</p>
+      <p>${employee.location.street.number}  ${employee.location.street.name}, ${employee.location.postcode}</p>
+      <p>Birthday: ${employee.dob.date}</p>
+    </div>
+  `
+  modal.innerHTML = html;
+}
+
+mainContent.addEventListener('click', (e) => {
+  console.log(event.target);
+  if (event.target.className === 'card') {
+    let cel = event.target.getAttribute('index');
+    generateModal(cel);
+  } else if (event.target.className === 'image' || event.target.className === 'employee-info') {
+    let parent = event.target.parentNode;
+    let cel = parent.getAttribute('index');
+    generateModal(cel);
+  }
+});
+// window.setTimeout(() => {
+//   let numer = firstCard.getAttribute('index');
+//   console.log(numer);
+// }, 3000);

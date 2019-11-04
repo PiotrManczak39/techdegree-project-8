@@ -70,6 +70,6 @@ for (let i=0; i<12; i++) {
         dobs.push(birth);
         seeds.push(seed);
         profiles[i].innerHTML = generateCard(pic, fullName, email, city);
-        modals.push(generateModal(pic, fullName, email, city, cell, address, birth));
-      })
-}
+      //   modals.push(generateModal(pic, fullName, email, city, cell, address, birth));
+      // })
+})
