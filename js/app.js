@@ -1,6 +1,9 @@
 const profiles = document.querySelectorAll('.profiles');
 const card = document.querySelectorAll('.card');
 const modal = document.querySelector('.modal');
+let index = 0;
+const queue = [];
+
 const pics = [];
 const fullNames = [];
 const emails = [];
@@ -14,7 +17,7 @@ const modals = [];
 function generateCard(address, name, email, city) {
   const html = `
     <div class="card">
-      <img src='${address}' alt="Picture of the very important person">
+      <img src='${address}' alt="Picture of the very important person" index =${index}>
       <div class="inside">
         <p><strong>${name}</strong></p>
         <p>${email}</p>
@@ -22,6 +25,7 @@ function generateCard(address, name, email, city) {
       </div>
     </div>
   `
+  index += 1;
   return html;
 }
 
@@ -45,6 +49,7 @@ for (let i=0; i<12; i++) {
       .then( response => response.json() )
       // .then(data => console.log(data.results[0].dob.date))
       .then( data => {
+        queue.push(data.results);
         let pic = data.results[0].picture.medium;
         let fullName = data.results[0].name.first + ' ' + data.results[0].name.last;
         let email = data.results[0].email;
@@ -68,27 +73,3 @@ for (let i=0; i<12; i++) {
         modals.push(generateModal(pic, fullName, email, city, cell, address, birth));
       })
 }
-
-// fetch('https://randomuser.me/api/')
-//   .then(response => response.json())
-//   .then(data => console.log(data.info.seed))
-
-
-// function generateHTML(pic, name, email, city) {
-//   const listItemPic = document.createElement('img');
-//   profiles.appendChild(listItemPic);
-//   listItemPic.src = pic;
-//   listItemPic.alt = 'Random';
-//
-//   const listItemName = document.createElement('li');
-//   profiles.appendChild(listItemName);
-//   listItemName.textContent = name;
-//
-//   const listItemEmail = document.createElement('li');
-//   profiles.appendChild(listItemEmail);
-//   listItemEmail.textContent = email;
-//
-//   const listItemCity = document.createElement('li');
-//   profiles.appendChild(listItemCity);
-//   listItemCity.textContent = city;
-// }
