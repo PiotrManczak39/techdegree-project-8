@@ -1,7 +1,7 @@
 const mainContent = document.getElementById('main-content');
 const employeeArrays = [];
+const profiles = document.getElementsByClassName('profile');
 let index = 0;
-const firstCard = document.querySelector('.card');
 
 fetch('https://randomuser.me/api/?results=12')
     .then(response => response.json())
@@ -16,16 +16,14 @@ function generateEmployees(data) {
   data.forEach( item => employeeArrays.push(item) );
   data.map(result => {
     const html = `
-      <section class = 'card' index = ${index}>
-        <img class = 'image' src='${result.picture.large}' alt = 'profile-image'>
-        <h3 class = 'employee-info'>${result.name.first} ${result.name.last}</h3>
-        <p class = 'employee-info'>${result.email}</p>
-        <p class = 'employee-info'>${result.location.city}</p>
-
+      <section class='card' index = ${index}>
+        <img class='image' src='${result.picture.large}' alt = 'profile-image'>
+        <h3 class='employee-info'>${result.name.first} ${result.name.last}</h3>
+        <p class='employee-info'>${result.email}</p>
+        <p class='employee-info'>${result.location.city}</p>
       </section>
     `
     index += 1;
-    // employeeArrays.push(result);
     mainContent.innerHTML += html;
   });
 }
@@ -58,7 +56,3 @@ mainContent.addEventListener('click', (e) => {
     generateModal(cel);
   }
 });
-// window.setTimeout(() => {
-//   let numer = firstCard.getAttribute('index');
-//   console.log(numer);
-// }, 3000);

@@ -13,10 +13,17 @@ body {
   padding-bottom: 40px;
 }
 
-.grid {
+#main-content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1.1em;
+}
+
+.title {
+  padding: 30px 0;
+}
+
+img {
+  border-radius: 50%;
 }
 
 
