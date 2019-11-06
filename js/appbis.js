@@ -31,9 +31,17 @@ function generateEmployees(data) {
   });
 }
 
+function birthdayF(string) {
+  let osobneLitery = Array.from(string);
+  let nowy = osobneLitery.slice(0, 10);
+  let joined = nowy.join('');
+  return joined;
+}
+
 function generateModal(number) {
   let modal = document.getElementById('modal')
   let employee = employeeArrays[number];
+  let birthday = birthdayF(employee.dob.date);
   let html = `
     <div class="modal-inside">
       <div class="wrap">
@@ -43,7 +51,7 @@ function generateModal(number) {
         <p class="location">${employee.location.city}</p>
         <p>${employee.phone}</p>
         <p>${employee.location.street.number}  ${employee.location.street.name}, ${employee.location.postcode}</p>
-        <p>Birthday: ${employee.dob.date}</p>
+        <p>Birthday: ${birthday}</p>
       </div>
     </div>
   `
