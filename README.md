@@ -1,2 +1,2 @@
 # techdegree-project-8
- fetch API
+ fetch() API with pop up window!
